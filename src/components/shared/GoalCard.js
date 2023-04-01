@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 import {useTheme} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 
-export const GoalCard = () => {
+export const GoalCard = ({goalDetails}) => {
+console.log(goalDetails)
     const theme = useTheme();
     const navigate = useNavigate();
     return ( <Card>
@@ -31,7 +32,7 @@ export const GoalCard = () => {
                 </CardContent>
                 <CardActions>
                     <Button size="small">Share</Button>
-                    <Button onClick={() => navigate("/goal/1")} size="small">Learn More</Button>
+                    <Button onClick={() => navigate(`/goal/${goalDetails.id}`)} size="small">Learn More</Button>
                 </CardActions>
             </Card>
         );

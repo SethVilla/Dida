@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {getDogs} from '../../services/services';
+import {getALLGoals, getDogs, getTODOByID, getGoalByID} from '../../services/services';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import {buildDogFeedPost} from '../../utils/utils';
@@ -11,6 +11,26 @@ import {GoalCard} from "../shared/GoalCard";
 import HeaderImage from "../../assets/adrian-infernus-GLf7bAwCdYg-unsplash.jpg";
 import Grid from '@mui/material/Unstable_Grid2';
 export const HomePage = () => {
+    const [goals, setGoals] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        (async () => {
+          try {
+            setLoading(true);
+            const goals = await getALLGoals();
+            console.log("try get all goal ")
+            console.log(goals.data)
+            setGoals(goals.data)
+          //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
+          } catch (err) {
+            console.log(err);
+          } finally {
+            setLoading(false);
+          }
+        })();
+      }, []);
+  
+    
 
     const styles = {
         paperContainer: {
@@ -40,30 +60,12 @@ export const HomePage = () => {
       }}
     >
             <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                {!loading && goals.map(goal=> 
                 <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                    <GoalCard/>
-                </Grid>
-                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
-                    <GoalCard/>
-                </Grid>
-                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                    <GoalCard/>
-                </Grid>
-                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                    <GoalCard/>
-                </Grid>
-                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                    <GoalCard/>
-                </Grid>
-                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                    <GoalCard/>
-                </Grid>
-                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                    <GoalCard/>
-                </Grid>
-                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                    <GoalCard/>
-                </Grid>
+                    <GoalCard goalDetails={goal}/>{console.log(goal)}
+                </Grid>)
+                }
+               
             </Grid>
     </Box>
       </Box>

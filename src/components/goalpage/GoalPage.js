@@ -1,8 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
+import {getALLGoals, getDogs, getTODOByID, getGoalByID} from '../../services/services';
 export const GoalPage = () => {
+    const [goalDetails, setGoalDetails] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        (async () => {
+          try {
+            setLoading(true);
+            const goals = await getGoalByID();
+            console.log("try get all goal ")
+            console.log(goals.data)
+          //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
+          } catch (err) {
+            console.log(err);
+          } finally {
+            setLoading(false);
+          }
+        })();
+      }, []);
     return (
     <Box sx={{background:"white"}}>
         <Typography padding="12px 48px" variant="h3">
