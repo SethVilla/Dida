@@ -20,20 +20,20 @@ export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const {uid} = useAuth();
+  const {username} = useAuth();
   const dispatch = useAuthDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-      if (uid) {
+      if (username) {
           navigate("/profile")
       }
-  }, [uid])
+  }, [username])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-     const res = await axios.post("/auth/login", {
+     const res = await axios.post("http://localhost:8099/user/login", {
          email: data.get('email'),
          password: data.get('password'),
      });

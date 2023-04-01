@@ -19,37 +19,38 @@ import {useAuthDispatch, useAuth} from "../../contexts/AuthContext";
 
 
 export const SignupForm = () => {
-  const {uid} = useAuth();
+  const {username} = useAuth();
   const authDispatch = useAuthDispatch();
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(signupReducer, {
     username: '',
-    firstName: '',
-    lastName: '',
+    // firstName: '',
+    // lastName: '',
     email: '',
     password: '',
-    newsLetter: false
+    // newsLetter: false
   });
 
   useEffect(() => {
-    if (uid) {
+    if (username) {
       navigate("/profile")
     }
-  }, [uid])
+  }, [username])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const res = await axios.post("/auth/signup", {
+    const {data: resData} = await axios.post("http://localhost:8099/user/register", {
       username: data.get('username'),
       email: data.get('email'),
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
+      // firstName: data.get('firstName'),
+      // lastName: data.get('lastName'),
       password: data.get('password'),
     })
-      if (res?.data) {
+    console.log(resData)
+      if (resData?.email) {
         authDispatch({type: 'all', value: {
-            ...res.data
+            ...resData
           }});
       }
   };
