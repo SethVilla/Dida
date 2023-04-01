@@ -5,6 +5,9 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {GoalAccordian} from "../shared/GoalAccordian";
+import Grid from '@mui/material/Unstable_Grid2';
+import {GoalCard} from "../shared/GoalCard";
+import {NewGoalCard} from "../shared/NewGoalCard";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,7 +68,13 @@ export const ProfilePage = () => {
          <GoalAccordian/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+              <Grid xs={2} sm={4} md={9} display="flex" justifyContent="center">
+                  <NewGoalCard/>
+              </Grid>
+          </Grid>
+
+
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three
