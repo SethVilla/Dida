@@ -51,7 +51,7 @@ const router = createBrowserRouter([
      element: (
        <>
          <ButtonAppBar />
-         <profile />
+           <ProfilePage />
        </>
      ),
   },
@@ -88,15 +88,6 @@ const router = createBrowserRouter([
       <>
         <ButtonAppBar />
         <Feed />
-      </>
-    ),
-  },
-  {
-    path: '/profile',
-    element: (
-      <>
-        <ButtonAppBar />
-        <ProfilePage />
       </>
     ),
   },
