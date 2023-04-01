@@ -14,6 +14,7 @@ import {ProfilePage} from './components/profilepage/profile';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import Box from "@mui/material/Box";
 import HeaderImage from "./assets/adrian-infernus-GLf7bAwCdYg-unsplash.jpg";
+import {GoalPage} from "./components/goalpage/GoalPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,11 +64,11 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/post/:postId',
+    path: '/goal/:goalId',
     element: (
       <>
         <ButtonAppBar />
-        <Post />
+        <GoalPage />
       </>
     ),
   },

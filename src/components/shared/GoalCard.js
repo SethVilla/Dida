@@ -6,10 +6,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useTheme} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 export const GoalCard = () => {
     const theme = useTheme();
-    return ( <Card sx={{ maxWidth: 345 }}>
+    const navigate = useNavigate();
+    return ( <Card>
                 <CardMedia
                     component="img"
                     alt="green iguana"
@@ -29,7 +31,7 @@ export const GoalCard = () => {
                 </CardContent>
                 <CardActions>
                     <Button size="small">Share</Button>
-                    <Button size="small">Learn More</Button>
+                    <Button onClick={() => navigate("/goal/1")} size="small">Learn More</Button>
                 </CardActions>
             </Card>
         );
