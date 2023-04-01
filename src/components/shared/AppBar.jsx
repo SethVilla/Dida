@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from "react-router-dom";
+import LogoImage from "../../assets/logo_small.png";
 
 export const ButtonAppBar = () => {
   const navigate = useNavigate();
@@ -24,8 +25,9 @@ export const ButtonAppBar = () => {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-            Dida
+            <img src={LogoImage}></img>
           </Typography>
+
           <Button onClick={() => navigate("/")} color="inherit">
             Home
           </Button>
