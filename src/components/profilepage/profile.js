@@ -64,7 +64,9 @@ export const ProfilePage = () => {
           <Tab label="My Created Goals" {...a11yProps(1)} />
           <Tab label="Settings" {...a11yProps(2)} />
         </Tabs>
-        <TabPanel value={value} index={0}>
+        <TabPanel         styles={{
+          width: "100%",
+        }} value={value} index={0}>
          <GoalAccordian/>
         </TabPanel>
         <TabPanel value={value} index={1}>
