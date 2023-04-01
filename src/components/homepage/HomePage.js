@@ -7,52 +7,65 @@ import ImageListItem from '@mui/material/ImageListItem';
 import {buildDogFeedPost} from '../../utils/utils';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import {GoalCard} from "../shared/GoalCard";
+import HeaderImage from "../../assets/adrian-infernus-GLf7bAwCdYg-unsplash.jpg";
+import Grid from '@mui/material/Unstable_Grid2';
 export const HomePage = () => {
-  const [dogs, setDogs] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const {data} = await getDogs();
-        setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
-
+    const styles = {
+        paperContainer: {
+            backgroundImage: `url(${HeaderImage})`
+        }
+    };
   return (
+      <Box sx={{ width: '100%'}}>
+          <Box sx={{ padding: "98px 0px", width: '100%'}}>
+              <Typography variant="h1" textAlign="center">
+                  The Web App
+              </Typography>
+              <Typography variant="h2" gutterBottom textAlign="center">
+                  that helps you <Typography display={'inline'} variant="h2">
+                  reach your goals
+              </Typography>
+              </Typography>
+          </Box>
     <Box
       sx={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        // width: '100%',
+        // height: '100%',
+        // display: 'flex',
+        // flexDirection: 'column',
+        // alignItems: 'center',
+        //   flexGrow: 1
       }}
     >
-      <ImageList cols={5} rowHeight={300}>
-        <Backdrop
-          sx={{color: '#fff', zIndex: theme => theme.zIndex.drawer + 1}}
-          open={loading}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-        {dogs?.map(dog => (
-          <ImageListItem key={dog.id}>
-            <img
-              src={`${dog.imageUrl}`}
-              srcSet={`${dog.imageUrl}`}
-              alt={dog.dogName}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+                    <GoalCard/>
+                </Grid>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
+                    <GoalCard/>
+                </Grid>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+                    <GoalCard/>
+                </Grid>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+                    <GoalCard/>
+                </Grid>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+                    <GoalCard/>
+                </Grid>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+                    <GoalCard/>
+                </Grid>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+                    <GoalCard/>
+                </Grid>
+                <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+                    <GoalCard/>
+                </Grid>
+            </Grid>
     </Box>
+      </Box>
   );
 };

@@ -12,7 +12,7 @@ export const ButtonAppBar = () => {
   const navigate = useNavigate();
   return (
     <Box sx={{flexGrow: 1}}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none'}}>
         <Toolbar>
           {/* <IconButton
             size="large"

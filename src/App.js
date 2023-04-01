@@ -12,6 +12,8 @@ import {ButtonAppBar} from './components/shared/AppBar';
 import {Feed} from './components/feed/Feed';
 import {ProfilePage} from './components/profilepage/profile';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import Box from "@mui/material/Box";
+import HeaderImage from "./assets/adrian-infernus-GLf7bAwCdYg-unsplash.jpg";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -94,7 +96,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
+          <Box sx={{backgroundImage: `url(${HeaderImage})`, backgroundPosition: "center",
+              backgroundSize: "cover"}}>
         <RouterProvider router={router} />
+          </Box>
       </QueryClientProvider>
     </ThemeProvider>
   );
