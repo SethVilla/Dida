@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import './index.css';
 import {HomePage} from './components/homepage/HomePage';
 import {HIWPage} from './components/howitworkspage/HIWPage';
+import {profile} from './components/profilepage/profile';
 import {Post} from './components/shared/Post';
 import {ProtectedRoute} from './components/shared/ProtectedRoute';
 import {ButtonAppBar} from './components/shared/AppBar';
@@ -45,6 +46,15 @@ const router = createBrowserRouter([
         </>
       ),
    },
+   {
+     path: '/profile',
+     element: (
+       <>
+         <ButtonAppBar />
+         <profile />
+       </>
+     ),
+  },
   {
     path: '/signup',
     element: (

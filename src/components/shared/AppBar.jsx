@@ -32,6 +32,9 @@ export const ButtonAppBar = () => {
           <Button onClick={() => navigate("/how-it-works")} color="inherit">
             How it works
           </Button>
+          <Button onClick={() => navigate("/profile")} color="inherit">
+            My Profile
+          </Button>
           <Button onClick={() => navigate("/login")} color="inherit">
             Login
           </Button>
