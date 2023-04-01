@@ -1,29 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {getDogs} from '../../services/services';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import {buildDogFeedPost} from '../../utils/utils';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 export const HIWPage = () => {
-  const [dogs, setDogs] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const {data} = await getDogs();
-        setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
 
   return (
   <div>
