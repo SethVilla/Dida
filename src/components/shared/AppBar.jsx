@@ -24,10 +24,13 @@ export const ButtonAppBar = () => {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-            Binary Upload Boom
+            Dida
           </Typography>
           <Button onClick={() => navigate("/")} color="inherit">
             Home
+          </Button>
+          <Button onClick={() => navigate("/how-it-works")} color="inherit">
+            How it works
           </Button>
           <Button onClick={() => navigate("/login")} color="inherit">
             Login

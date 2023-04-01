@@ -5,6 +5,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import './index.css';
 import {HomePage} from './components/homepage/HomePage';
+import {HIWPage} from './components/howitworkspage/HIWPage';
 import {Post} from './components/shared/Post';
 import {ProtectedRoute} from './components/shared/ProtectedRoute';
 import {ButtonAppBar} from './components/shared/AppBar';
@@ -32,6 +33,15 @@ const router = createBrowserRouter([
       </>
     ),
   },
+  {
+      path: '/how-it-works',
+      element: (
+        <>
+          <ButtonAppBar />
+          <HIWPage />
+        </>
+      ),
+   },
   {
     path: '/signup',
     element: (
