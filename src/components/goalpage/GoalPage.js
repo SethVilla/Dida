@@ -2,20 +2,26 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {getALLGoals, getDogs, getTODOByID, getGoalByID} from '../../services/services';
+import {getUserByID, getGoalByID} from '../../services/services';
 export const GoalPage = () => {
     const {goalId} = useParams();
 
     const [goal, setGoal] = useState([]);
+    const [author, setAuthor] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         (async () => {
           try {
             setLoading(true);
             const res = await getGoalByID(goalId);
-            console.log("try get all goal ")
+            console.log("try get goal ")
             console.log(res.data)
+            console.log(res.data.author)
+            const res2 = await getUserByID(res.data.author);
+            console.log("try get user ")
+            console.log(res2.data)
             setGoal(res.data)
+            setAuthor(res2.data)
           //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
           } catch (err) {
             console.log(err);
@@ -30,7 +36,7 @@ export const GoalPage = () => {
             {goal?.title}:
         </Typography>
         <Typography padding="0 72px" variant="body1">
-            Author: (author name)
+            Author: ({author.username})
         </Typography>
         <Typography padding="0 72px" variant="body1">
             Created at : (creation date)
