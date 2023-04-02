@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -22,7 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import { ListItemButton } from '@mui/material';
 import {StudyReflection} from "../modals/StudyReflection";
-
+import {getTaskByGoalandUser} from '../../services/services';
 
 
 function generate(element) {
@@ -41,6 +41,25 @@ const Demo = styled('div')(({ theme }) => ({
     console.log("this is in accordian")
     console.log(goal)
     console.log(user)
+    const [tasks, settasks] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+            (async () => {
+            try {
+                setLoading(true);
+                const res = await getTaskByGoalandUser(goal.id,"6428b8c36e3ad128fabbd01f");
+                console.log("try get tasks ")
+                console.log(res.data)
+                settasks(res.data)
+            //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
+            } catch (err) {
+                console.log(err);
+            } finally {
+                setLoading(false);
+            }
+            })();
+        }, []);
+        console.log(tasks)
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(true);
     const [expanded, setExpanded] = React.useState(false);
