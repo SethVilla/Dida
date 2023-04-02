@@ -50,8 +50,8 @@ const Demo = styled('div')(({ theme }) => ({
                 setLoading(true);
                 const res = await getTaskByGoalandUser(goal.id,"6428b8c36e3ad128fabbd01f");
                 console.log("try get tasks ")
-                console.log(res.data)
-                settasks(res.data)
+                console.log(res.data.tasklist)
+                settasks(res.data.tasklist)
             //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
             } catch (err) {
                 console.log(err);
@@ -88,25 +88,26 @@ const Demo = styled('div')(({ theme }) => ({
                             <Grid item xs={12} md={12}>
                                 <Demo>
                                     <List dense={dense}>
-                                        {generate(
-                                            <>
-                                            <ListItem backgroundColor="Green">
-                                                <ListItemText
-                                                    primary="Single-line item"
-                                                    secondary={secondary ? 'Secondary text' : null}
-                                                />
-                                                <ListItemIcon>
-                                                    <FolderIcon />
-                                                </ListItemIcon>
-                                                <ListItemIcon>
-                                                    <ListItemButton>
-                                                        <StudyReflection/>
-                                                    </ListItemButton>
-                                                </ListItemIcon>
-                                            </ListItem>
-                                                <Divider light />
-                                                </>
-                                        )}
+                                        {tasks.map(task =>
+
+                                                                                     <>
+                                                                                     <ListItem backgroundColor="Green">
+                                                                                         <ListItemText
+                                                                                             primary={task.todo.title}
+                                                                                             secondary={secondary ? 'Secondary text' : null}
+                                                                                         />
+                                                                                         <ListItemIcon>
+                                                                                             <FolderIcon />
+                                                                                         </ListItemIcon>
+                                                                                         <ListItemIcon>
+                                                                                             <ListItemButton>
+                                                                                                 <StudyReflection/>
+                                                                                             </ListItemButton>
+                                                                                         </ListItemIcon>
+                                                                                     </ListItem>
+                                                                                         <Divider light />
+                                                                                         </>
+                                         )}
                                     </List>
                                 </Demo>
                             </Grid>
