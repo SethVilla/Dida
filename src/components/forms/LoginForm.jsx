@@ -134,7 +134,6 @@ export const LoginForm = () => {
                 </Link>
               </Grid>
             </Grid>
-            <Copyright sx={{mt: 5}} />
           </Box>
         </Box>
       </Grid>

@@ -10,7 +10,6 @@ import {useNavigate} from 'react-router-dom';
 import {getUserByID, getGoalByID} from '../../services/services';
 
 export const GoalCard = ({goalDetails}) => {
-  console.log(goalDetails);
   const theme = useTheme();
   const navigate = useNavigate();
   const [author, setAuthor] = useState([]);
@@ -30,13 +29,19 @@ export const GoalCard = ({goalDetails}) => {
       }
     })();
   }, []);
+  const img = "https://source.unsplash.com/random";
   return (
     <Card>
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="140"
-        image="https://daily.jstor.org/wp-content/uploads/2023/01/good_times_with_bad_music_1050x700.jpg"
+        // alt="green iguana"
+        height="60"
+        sx={{
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: t => `#${Math.floor(Math.random()*16777215).toString(16)}`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

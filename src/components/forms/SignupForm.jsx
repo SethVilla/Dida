@@ -56,7 +56,7 @@ export const SignupForm = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{paddingBottom: 24}}>
       <CssBaseline />
       <Box
         sx={{
@@ -64,6 +64,9 @@ export const SignupForm = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          background: "white",
+          padding: 2,
+          borderRadius: 1,
         }}
       >
         <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
@@ -183,7 +186,6 @@ export const SignupForm = () => {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{mt: 5}} />
     </Container>
   );
 };

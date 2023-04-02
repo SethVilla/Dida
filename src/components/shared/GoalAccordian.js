@@ -8,18 +8,14 @@ import {styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-import FolderIcon from '@mui/icons-material/Folder';
 import Divider from '@mui/material/Divider';
 import {ListItemButton} from '@mui/material';
 import {StudyReflection} from '../modals/StudyReflection';
 import {getTaskByGoalandUser} from '../../services/services';
 import DoneIcon from '@mui/icons-material/Done';
-import Chip from '@mui/material/Chip';
-
 
 function generate(element) {
   return [0, 1, 2].map(value =>
@@ -34,18 +30,14 @@ const Demo = styled('div')(({theme}) => ({
 }));
 
 export const GoalAccordian = ({goal, user}) => {
-  console.log(goal);
-  console.log(user);
-  const [tasks, settasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     (async () => {
       try {
         setLoading(true);
         const res = await getTaskByGoalandUser(goal.id, user);
-        console.log('try get tasks ');
-        console.log(res.data.tasklist);
-        settasks(res.data.tasklist);
+        setTasks(res.data.tasklist);
         //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
       } catch (err) {
         console.log(err);
@@ -84,6 +76,7 @@ export const GoalAccordian = ({goal, user}) => {
                     {tasks.map((task, i) => {
                       const date = new Date();
                       date.setDate(date.getDate() + i);
+                      console.log(task)
                       return (<>
                         <ListItem backgroundColor="Green">
                           <ListItemText
@@ -91,17 +84,16 @@ export const GoalAccordian = ({goal, user}) => {
                               secondary={task.todo.description}
                           />
                           <ListItemIcon>
-                            <Typography sx={{color: i == 0 ? "green": ""}}>{date.toDateString()}</Typography>
+                            <Typography sx={{color: i == 0 ? "green": "", fontStyle: "bold"}}>{date.toDateString()}</Typography>
                           </ListItemIcon>
                           <ListItemIcon>
                             <ListItemButton>
-                              <StudyReflection task = {task}/>
+                              <StudyReflection task={task} setTasks={setTasks}/>
                             </ListItemButton>
                           </ListItemIcon>
                           <ListItemIcon>
-                            <DoneIcon/>
+                            <DoneIcon color={task?.task?.active ? "success" : "disabled"}/>
                           </ListItemIcon>
-
                         </ListItem>
                         <Divider light />
                       </>)})

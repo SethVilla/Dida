@@ -4,27 +4,25 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import {useNavigate} from 'react-router-dom';
 import Typography from '@mui/material/Typography';
-import {getUserByID, getGoalByID} from '../../services/services';
+import {getUserByID, getGoalByID, getALLTODOinGoal} from '../../services/services';
 export const GoalPage = () => {
   const {goalId} = useParams();
   const navigate = useNavigate();
 
   const [goal, setGoal] = useState([]);
   const [author, setAuthor] = useState([]);
+  const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     (async () => {
       try {
         setLoading(true);
         const res = await getGoalByID(goalId);
-        console.log('try get goal ');
-        console.log(res.data);
-        console.log(res.data.author);
         const res2 = await getUserByID(res.data.author);
-        console.log('try get user ');
-        console.log(res2.data);
+        const res3 = await getALLTODOinGoal(goalId);
         setGoal(res.data);
         setAuthor(res2.data);
+        setTodos(res3.data.todolist);
       } catch (err) {
         console.log(err);
       } finally {
@@ -32,6 +30,7 @@ export const GoalPage = () => {
       }
     })();
   }, []);
+
   return (
     <Box sx={{background: 'white'}}>
       <Typography padding="12px 48px" variant="h3">
@@ -52,9 +51,10 @@ export const GoalPage = () => {
       <Typography padding="12px 48px" variant="h4">
         Tasks in this goal:
       </Typography>
-      <Typography padding="0 72px">
-        (Acquire all todos (maybe just title) here)
-      </Typography>
+      {console.log(todos)}
+      {!loading && todos.map( todo=>
+          <Typography padding="0 72px">{todo.title}</Typography>
+        )}
 
       <Typography padding="12px 48px" variant="h4" gutterBottom>
         Before enrolling:

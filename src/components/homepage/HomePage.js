@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {getALLGoals, getTODOByID, getGoalByID} from '../../services/services';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import {getALLGoals, getTODOByID, getGoalByID, getChatGpt} from '../../services/services';
 import {GoalCard} from '../shared/GoalCard';
 import HeaderImage from '../../assets/adrian-infernus-GLf7bAwCdYg-unsplash.jpg';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -14,6 +12,8 @@ export const HomePage = () => {
     (async () => {
       try {
         setLoading(true);
+        // const chat = await getChatGpt();
+        // console.log(chat)
         const goals = await getALLGoals();
         console.log('try get all goal ');
         console.log(goals.data);
@@ -34,12 +34,13 @@ export const HomePage = () => {
   return (
     <Box sx={{width: '100%'}}>
       <Box sx={{padding: '98px 0px', width: '100%'}}>
-        <Typography variant="h1" textAlign="center">
+        <Typography variant="h1" textAlign="center" sx={{fontFamily: "Helvetica", color: "purple", fontWeight: "bold"}}>
+
           The Web App
         </Typography>
-        <Typography variant="h2" gutterBottom textAlign="center">
+        <Typography sx={{fontFamily: "Helvetica", color: "purple", fontWeight: "bold"}} variant="h2" gutterBottom textAlign="center">
           that helps you{' '}
-          <Typography display={'inline'} variant="h2">
+          <Typography display={'inline'} variant="h2" sx={{fontFamily: "Helvetica", color: "white", fontWeight: "bold"}}>
             reach your goals
           </Typography>
         </Typography>
@@ -68,7 +69,6 @@ export const HomePage = () => {
                   justifyContent="center"
                 >
                   <GoalCard goalDetails={goal} />
-                  {console.log(goal)}
                 </Grid>
               ))}
           </Grid>

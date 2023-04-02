@@ -12,10 +12,13 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import {studyReflectionReducer} from "../../reducers/studyReflectionReducer";
+import GroupsIcon from '@mui/icons-material/Groups';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
 
 const style = {
   position: 'absolute',
@@ -29,7 +32,7 @@ const style = {
   p: 4,
 };
 
-export const StudyReflection = ({task}) => {
+export const StudyReflection = ({task, setTasks}) => {
   const [open, setOpen] = React.useState(false);
   const [payload, setPayload] = useReducer(studyReflectionReducer, {...task?.task, performance: {}});
   const steps = [
@@ -37,7 +40,7 @@ export const StudyReflection = ({task}) => {
       label: 'Select Comfort Zone',
       component: (
           <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <FormLabel id="demo-radio-buttons-group-label">Comfort Zone</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
@@ -119,10 +122,18 @@ export const StudyReflection = ({task}) => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(task)
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const handleNext = () => {
+  const handleNext = (state) => {
+      if (state === "Finish") {
+          setTasks(prevState => {
+              const newState = [...prevState]
+              const taskToUpdate = newState.find(el => el.task.id === task.task.id)
+              taskToUpdate.task.active = true
+              console.log(taskToUpdate)
+              return newState
+          })
+      }
     setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
@@ -162,6 +173,12 @@ export const StudyReflection = ({task}) => {
             <Typography id="transition-modal-description" sx={{mt: 2}}>
             {task.todo.description}
             </Typography>
+          <FormGroup>
+              <Typography variant="subtitle" sx={{mt: 2, fontWeight: "bold"}}>
+                  Enable Collaboration
+              </Typography>
+              <FormControlLabel control={<Switch />} label={<GroupsIcon/>} />
+          </FormGroup>
             <Box sx={{maxWidth: 400}}>
               <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
@@ -182,7 +199,7 @@ export const StudyReflection = ({task}) => {
                         <div>
                           <Button
                             variant="contained"
-                            onClick={handleNext}
+                            onClick={() => handleNext(index === steps.length - 1 ? 'Finish' : 'Continue')}
                             sx={{mt: 1, mr: 1}}
                           >
                             {index === steps.length - 1 ? 'Finish' : 'Continue'}
@@ -205,8 +222,8 @@ export const StudyReflection = ({task}) => {
                   <Typography>
                     All steps completed - you&apos;re finished
                   </Typography>
-                  <Button onClick={handleReset} sx={{mt: 1, mr: 1}}>
-                    Reset
+                  <Button onClick={handleClose} sx={{mt: 1, mr: 1}}>
+                    close
                   </Button>
                 </Paper>
               )}
