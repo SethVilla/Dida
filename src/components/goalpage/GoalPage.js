@@ -51,7 +51,6 @@ export const GoalPage = () => {
       <Typography padding="12px 48px" variant="h4">
         Tasks in this goal:
       </Typography>
-      {console.log(todos)}
       {!loading && todos.map( todo=>
           <Typography padding="0 72px">{todo.title}</Typography>
         )}
@@ -69,7 +68,7 @@ export const GoalPage = () => {
         How long time do you plan on studying for this goal?
       </Typography>
       <Typography padding="12px 48px" variant="h5" gutterBottom>
-        <Button onClick={() => navigate('/profile')} color="inherit">
+        <Button onClick={() => navigate('/profile')} variant="contained">
           Enroll
         </Button>
       </Typography>

@@ -82,7 +82,16 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const theme = createTheme();
+  const theme = createTheme(createTheme({
+      palette: {
+          primary: {
+              main: "#551A8B",
+          },
+          secondary: {
+              main: "#00FFFF",
+          },
+      },
+  }));
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
