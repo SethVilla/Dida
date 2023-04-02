@@ -12,7 +12,30 @@ import {getUserByID, getAllGoalsofUser, getTaskByGoalandUser} from '../../servic
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+<<<<<<< HEAD
   
+=======
+  const {id} = useAuth();
+
+  const [goals, setGoals] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+        (async () => {
+          try {
+            setLoading(true);
+            const res = await getUserByID(id);
+            console.log("try get all goal ")
+            console.log(res.data)
+            setGoals(res.data)
+          } catch (err) {
+            console.log(err);
+          } finally {
+            setLoading(false);
+          }
+        })();
+      }, []);
+
+>>>>>>> c406198f6878555e6aa79087a6c755257446c166
   return (
       <div
           role="tabpanel"
@@ -96,19 +119,9 @@ export const ProfilePage = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+              <Grid xs={2} sm={4} md={12} display="flex" justifyContent="center">
                   <NewGoalCard/>
               </Grid>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                  <GoalCard/>
-              </Grid>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
-                  <GoalCard/>
-              </Grid>
-             <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
-                 <GoalCard/>
-             </Grid>
-
           </Grid>
 
 
