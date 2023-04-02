@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -22,6 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import { ListItemButton } from '@mui/material';
 import {StudyReflection} from "../modals/StudyReflection";
+import {getTaskByGoalandUser} from '../../services/services';
 import DoneIcon from '@mui/icons-material/Done';
 
 
@@ -29,7 +30,7 @@ import DoneIcon from '@mui/icons-material/Done';
 function generate(element) {
     return [0, 1, 2].map((value) =>
         React.cloneElement(element, {
-            key: value,
+            key: value,git
         }),
     );
 }
@@ -41,6 +42,25 @@ const Demo = styled('div')(({ theme }) => ({
  export const GoalAccordian = ({goal,user}) => {
     console.log(goal)
     console.log(user)
+    const [tasks, settasks] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+            (async () => {
+            try {
+                setLoading(true);
+                const res = await getTaskByGoalandUser(goal.id,"6428b8c36e3ad128fabbd01f");
+                console.log("try get tasks ")
+                console.log(res.data)
+                settasks(res.data)
+            //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
+            } catch (err) {
+                console.log(err);
+            } finally {
+                setLoading(false);
+            }
+            })();
+        }, []);
+        console.log(tasks)
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(true);
     const [expanded, setExpanded] = React.useState(false);
