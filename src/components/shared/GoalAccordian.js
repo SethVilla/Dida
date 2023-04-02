@@ -21,6 +21,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import { ListItemButton } from '@mui/material';
+import {StudyReflection} from "../modals/StudyReflection";
 
 
 
@@ -76,7 +77,7 @@ const Demo = styled('div')(({ theme }) => ({
                                                 </ListItemIcon>
                                                 <ListItemIcon>
                                                     <ListItemButton>
-                                                        start
+                                                        <StudyReflection/>
                                                     </ListItemButton>
                                                 </ListItemIcon>
                                             </ListItem>
