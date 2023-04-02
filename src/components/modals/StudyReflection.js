@@ -58,9 +58,11 @@ const steps = [
         </RadioGroup>
       </FormControl>
     ),
-    description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
+    description: `
+    Feeling very comfortable, that nothing in this task is new for you? Choose TOO COMFORTABLE.\n
+    Feeling in your comfort zone, and not learning a lot? Choose COMFORT ZONE.\n
+    Feeling challenged and excited, and this amount of challenged made you engaged? Choose LEARNING ZONE.\n
+    Feeling high anxiety and stressed out? Select PANIC ZONE.`,
   },
   {
     label: 'Completion Time',
@@ -82,7 +84,7 @@ const steps = [
       </FormControl>
     ),
     description:
-      'An ad group contains one or more ads which target a shared set of keywords.',
+      'Please fill the amount of time you use to complete this task.',
   },
 ];
 export const StudyReflection = ({task}) => {
