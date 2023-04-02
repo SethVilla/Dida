@@ -92,18 +92,6 @@ export const ProfilePage = () => {
         <TabPanel value={value} index={2}>
           Item Three
         </TabPanel>
-        <TabPanel value={value} index={3}>
-          Item Four
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          Item Five
-        </TabPanel>
-        <TabPanel value={value} index={5}>
-          Item Six
-        </TabPanel>
-        <TabPanel value={value} index={6}>
-          Item Seven
-        </TabPanel>
       </Box>
   );
 };
