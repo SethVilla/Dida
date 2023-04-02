@@ -29,9 +29,9 @@ const style = {
   p: 4,
 };
 
-export const StudyReflection = () => {
+export const StudyReflection = ({task}) => {
   const [open, setOpen] = React.useState(false);
-  const [payload, setPayload] = useReducer(studyReflectionReducer);
+  const [payload, setPayload] = useReducer(studyReflectionReducer, {...task?.task, performance: {}});
   const steps = [
     {
       label: 'Select Comfort Zone',
@@ -48,9 +48,7 @@ export const StudyReflection = () => {
                   control={<Radio />}
                   label="Too comfortable"
                   onChange={(event)=>{
-                    setPayload({type: "change_learning_zone", value : {
-                        learningZone: 0
-                        }})
+                    setPayload({type: "change_learning_zone", value : 0})
                   }}
               />
               <FormControlLabel
@@ -58,9 +56,7 @@ export const StudyReflection = () => {
                   control={<Radio />}
                   label="Comfort Zone"
                   onChange={(event)=>{
-                      setPayload({type: "change_learning_zone", value : {
-                              learningZone: 1
-                          }})
+                      setPayload({type: "change_learning_zone", value : 1})
                   }}
               />
               <FormControlLabel
@@ -68,16 +64,12 @@ export const StudyReflection = () => {
                   control={<Radio />}
                   label="Learning Zone"
                   onChange={(event)=>{
-                      setPayload({type: "change_learning_zone", value : {
-                              learningZone: 2
-                          }})
+                      setPayload({type: "change_learning_zone", value : 2})
                   }}
               />
               <FormControlLabel value="3" control={<Radio />} label="Panic Zone"
                                 onChange={(event)=>{
-                                    setPayload({type: "change_learning_zone", value : {
-                                            learningZone: 3
-                                        }})                                }
+                                    setPayload({type: "change_learning_zone", value : 3})                                }
               }
               />
             </RadioGroup>
@@ -97,12 +89,26 @@ export const StudyReflection = () => {
                 defaultValue="female"
                 name="radio-buttons-group"
             >
-              <FormControlLabel value="0" control={<Radio />} label="10 min" />
-              <FormControlLabel value="1" control={<Radio />} label="20 min" />
-              <FormControlLabel value="2" control={<Radio />} label="30 min" />
-              <FormControlLabel value="3" control={<Radio />} label="40 min" />
-              <FormControlLabel value="4" control={<Radio />} label="50 min" />
-              <FormControlLabel value="5" control={<Radio />} label="60 min" />
+              <FormControlLabel value="0" control={<Radio />} label="10 min"
+                                onChange={(event)=>{
+                                    setPayload({type: "change_time", value : 0})}}
+                                    />
+              <FormControlLabel value="1" control={<Radio />} label="20 min"
+                                onChange={(event)=>{
+                                    setPayload({type: "change_time", value : 1})}}
+              />
+              <FormControlLabel value="2" control={<Radio />} label="30 min"
+                                onChange={(event)=>{
+                                    setPayload({type: "change_time", value : 2})}}
+              />
+              <FormControlLabel value="3" control={<Radio />} label="40 min"                                 onChange={(event)=>{
+                  setPayload({type: "change_time", value : 3})}}/>
+              <FormControlLabel value="4" control={<Radio />} label="50 min"                                 onChange={(event)=>{
+                  setPayload({type: "change_time", value : 4})}}/>
+              <FormControlLabel value="5" control={<Radio />} label="60 min"
+                                onChange={(event)=>{
+                                    setPayload({type: "change_time", value : 5})}}
+              />
             </RadioGroup>
           </FormControl>
       ),
@@ -113,7 +119,7 @@ export const StudyReflection = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  console.log(task)
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -151,10 +157,10 @@ export const StudyReflection = () => {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Text in a modal
+              {task.todo.title}
             </Typography>
             <Typography id="transition-modal-description" sx={{mt: 2}}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {task.todo.description}
             </Typography>
             <Box sx={{maxWidth: 400}}>
               <Stepper activeStep={activeStep} orientation="vertical">

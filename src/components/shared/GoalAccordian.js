@@ -11,19 +11,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import {ListItemButton} from '@mui/material';
 import {StudyReflection} from '../modals/StudyReflection';
 import {getTaskByGoalandUser} from '../../services/services';
 import DoneIcon from '@mui/icons-material/Done';
+import Chip from '@mui/material/Chip';
+
 
 function generate(element) {
   return [0, 1, 2].map(value =>
@@ -58,7 +54,6 @@ export const GoalAccordian = ({goal, user}) => {
       }
     })();
   }, []);
-  console.log(tasks);
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(true);
   const [expanded, setExpanded] = React.useState(false);
@@ -86,25 +81,31 @@ export const GoalAccordian = ({goal, user}) => {
               <Grid item xs={12} md={12}>
                 <Demo>
                   <List dense={dense}>
-                    {tasks.map(task => (
-                      <>
+                    {tasks.map((task, i) => {
+                      const date = new Date();
+                      date.setDate(date.getDate() + i);
+                      return (<>
                         <ListItem backgroundColor="Green">
                           <ListItemText
-                            primary={task.todo.title}
-                            secondary={secondary ? 'Secondary text' : null}
+                              primary={task.todo.title}
+                              secondary={task.todo.description}
                           />
                           <ListItemIcon>
-                            <FolderIcon />
+                            <Typography sx={{color: i == 0 ? "green": ""}}>{date.toDateString()}</Typography>
                           </ListItemIcon>
                           <ListItemIcon>
                             <ListItemButton>
-                              <StudyReflection />
+                              <StudyReflection task = {task}/>
                             </ListItemButton>
                           </ListItemIcon>
+                          <ListItemIcon>
+                            <DoneIcon/>
+                          </ListItemIcon>
+
                         </ListItem>
                         <Divider light />
-                      </>
-                    ))}
+                      </>)})
+                    }
                   </List>
                 </Demo>
               </Grid>
