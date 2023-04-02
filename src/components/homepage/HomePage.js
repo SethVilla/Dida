@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {getALLGoals, getDogs, getTODOByID, getGoalByID} from '../../services/services';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import {buildDogFeedPost} from '../../utils/utils';
+import {getALLGoals, getTODOByID, getGoalByID} from '../../services/services';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import {GoalCard} from "../shared/GoalCard";
@@ -21,7 +18,6 @@ export const HomePage = () => {
             console.log("try get all goal ")
             console.log(goals.data)
             setGoals(goals.data)
-          //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
           } catch (err) {
             console.log(err);
           } finally {
@@ -49,25 +45,26 @@ export const HomePage = () => {
               </Typography>
               </Typography>
           </Box>
-    <Box
-      sx={{
-        // width: '100%',
-        // height: '100%',
-        // display: 'flex',
-        // flexDirection: 'column',
-        // alignItems: 'center',
-        //   flexGrow: 1
-      }}
-    >
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Box
+          sx={{
+            // width: '100%',
+            // height: '100%',
+            // display: 'flex',
+            // flexDirection: 'column',
+            // alignItems: 'center',
+            //   flexGrow: 1
+          }}
+        >
+        <Typography padding="0 48px">
+            <Grid container spacing={5} columns={{ xs: 4, sm: 8, md: 12 }}>
                 {!loading && goals.map(goal=> 
                 <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
                     <GoalCard goalDetails={goal}/>{console.log(goal)}
                 </Grid>)
                 }
-               
             </Grid>
+        </Typography>
+        </Box>
     </Box>
-      </Box>
   );
 };

@@ -22,6 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import { ListItemButton } from '@mui/material';
 import {StudyReflection} from "../modals/StudyReflection";
+import DoneIcon from '@mui/icons-material/Done';
 
 
 
@@ -38,7 +39,6 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
  export const GoalAccordian = ({goal,user}) => {
-    console.log("this is in accordian")
     console.log(goal)
     console.log(user)
     const [dense, setDense] = React.useState(false);
@@ -58,10 +58,9 @@ const Demo = styled('div')(({ theme }) => ({
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
                 >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            
+                    <Typography sx={{fontWeight: "bold"}}>
+                        {goal?.title}
                     </Typography>
-                    <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Box sx={{ flexGrow: 1, maxWidth: "100%" }}>
@@ -71,7 +70,7 @@ const Demo = styled('div')(({ theme }) => ({
                                     <List dense={dense}>
                                         {generate(
                                             <>
-                                            <ListItem>
+                                            <ListItem backgroundColor="Green">
                                                 <ListItemText
                                                     primary="Single-line item"
                                                     secondary={secondary ? 'Secondary text' : null}

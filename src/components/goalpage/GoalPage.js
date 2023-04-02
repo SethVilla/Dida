@@ -25,7 +25,6 @@ export const GoalPage = () => {
             console.log(res2.data)
             setGoal(res.data)
             setAuthor(res2.data)
-          //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
           } catch (err) {
             console.log(err);
           } finally {
