@@ -42,6 +42,19 @@ export const getALLGoals = async () => {
     console.log(err);
   }
 };
+//get all todo in one goal
+export const getALLTODOinGoal = async (goalID) => {
+  try {
+    return await axios.get('http://localhost:8099/goals/getallinfo/'+goalID, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 //get single goal by id
 export const getGoalByID = async goalID => {
   try {
