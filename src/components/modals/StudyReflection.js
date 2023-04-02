@@ -85,11 +85,11 @@ const steps = [
       'An ad group contains one or more ads which target a shared set of keywords.',
   },
 ];
-export const StudyReflection = () => {
+export const StudyReflection = ({task}) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  console.log(task)
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -123,10 +123,10 @@ export const StudyReflection = () => {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Text in a modal
+              {task.todo.title}
             </Typography>
             <Typography id="transition-modal-description" sx={{mt: 2}}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {task.todo.description}
             </Typography>
             <Box sx={{maxWidth: 400}}>
               <Stepper activeStep={activeStep} orientation="vertical">

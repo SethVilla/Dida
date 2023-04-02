@@ -91,14 +91,14 @@ export const GoalAccordian = ({goal, user}) => {
                         <ListItem backgroundColor="Green">
                           <ListItemText
                             primary={task.todo.title}
-                            secondary={secondary ? 'Secondary text' : null}
+                            secondary={task.todo.description}
                           />
                           <ListItemIcon>
                             <FolderIcon />
                           </ListItemIcon>
                           <ListItemIcon>
                             <ListItemButton>
-                              <StudyReflection />
+                              <StudyReflection task = {task}/>
                             </ListItemButton>
                           </ListItemIcon>
                         </ListItem>
