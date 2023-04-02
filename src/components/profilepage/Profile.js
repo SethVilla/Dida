@@ -16,26 +16,6 @@ import {
 
 function TabPanel(props) {
   const {children, value, index, ...other} = props;
-  const {id} = useAuth();
-
-  const [goals, setGoals] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const res = await getUserByID(id);
-        console.log('try get all goal ');
-        console.log(res.data);
-        setGoals(res.data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
-
   return (
     <div
       role="tabpanel"
@@ -66,29 +46,10 @@ export const ProfilePage = () => {
   const [goals, setGoals] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-<<<<<<< HEAD
-        (async () => {
-          try {
-            setLoading(true);
-            const res = await getAllGoalsofUser("642906c5816ed9263a189acc");
-            console.log("try get loged user ")
-            console.log(res.data)
-            console.log(res.data.goallist)
-            var goalList = res.data.goallist
-           setGoals(goalList)
-          } catch (err) {
-            console.log(err);
-          } finally {
-            setLoading(false);
-          }
-        })();
-      }, []);
-      console.log(goals)
-=======
     (async () => {
       try {
         setLoading(true);
-        const res = await getAllGoalsofUser('6428b8c36e3ad128fabbd01f');
+        const res = await getAllGoalsofUser(id);
         console.log('try get loged user ');
         console.log(res.data);
         console.log(res.data.goallist);
@@ -101,8 +62,9 @@ export const ProfilePage = () => {
       }
     })();
   }, []);
+
   console.log(goals);
->>>>>>> 941cacb27f92ad32914e4a7243fb6b6ec9790c68
+
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -140,11 +102,7 @@ export const ProfilePage = () => {
           }}
         >
           {goals.map(goal => (
-            <GoalAccordian
-              key={goal.id}
-              goal={goal}
-              user={'6428b8c36e3ad128fabbd01f'}
-            />
+            <GoalAccordian key={goal.id} goal={goal} user={id} />
           ))}
         </Box>
       </TabPanel>

@@ -37,31 +37,31 @@ const Demo = styled('div')(({theme}) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
- export const GoalAccordian = ({goal,user}) => {
-    console.log(goal)
-    console.log(user)
-    const [tasks, settasks] = useState([]);
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-            (async () => {
-            try {
-                setLoading(true);
-                const res = await getTaskByGoalandUser(goal.id,"642906c5816ed9263a189acc");
-                console.log("try get tasks ")
-                console.log(res.data.tasklist)
-                settasks(res.data.tasklist)
-            //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
-            } catch (err) {
-                console.log(err);
-            } finally {
-                setLoading(false);
-            }
-            })();
-        }, []);
-        console.log(tasks)
-    const [dense, setDense] = React.useState(false);
-    const [secondary, setSecondary] = React.useState(true);
-    const [expanded, setExpanded] = React.useState(false);
+export const GoalAccordian = ({goal, user}) => {
+  console.log(goal);
+  console.log(user);
+  const [tasks, settasks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const res = await getTaskByGoalandUser(goal.id, user);
+        console.log('try get tasks ');
+        console.log(res.data.tasklist);
+        settasks(res.data.tasklist);
+        //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+  console.log(tasks);
+  const [dense, setDense] = React.useState(false);
+  const [secondary, setSecondary] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
