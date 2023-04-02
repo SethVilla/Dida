@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import {useNavigate} from "react-router-dom";
 import Typography from '@mui/material/Typography';
-import {getALLGoals, getDogs, getTODOByID, getGoalByID} from '../../services/services';
+import { getALLGoals, getTODOByID, getGoalByID} from '../../services/services';
 export const GoalPage = () => {
     const {goalId} = useParams();
+    const navigate = useNavigate();
 
     const [goal, setGoal] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -16,7 +19,6 @@ export const GoalPage = () => {
             console.log("try get all goal ")
             console.log(res.data)
             setGoal(res.data)
-          //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
           } catch (err) {
             console.log(err);
           } finally {
@@ -27,19 +29,19 @@ export const GoalPage = () => {
     return (
     <Box sx={{background:"white"}}>
         <Typography padding="12px 48px" variant="h3">
-            {goal?.title}:
+            Goal: {goal?.title}:
         </Typography>
         <Typography padding="0 72px" variant="body1">
-            Author: (author name)
+            Created by: {goal?.author}
         </Typography>
         <Typography padding="0 72px" variant="body1">
-            Created at : (creation date)
+            Created on: {goal?.createdDate}
         </Typography>
         <Typography padding="12px 48px" variant="h4">
             Description:
         </Typography>
             <Typography padding="0 72px" variant="body1">
-                (The description of this goal)
+                {goal?.description}
             </Typography>
         <Typography padding="12px 48px" variant="h4">
             Tasks in this goal:
@@ -48,18 +50,24 @@ export const GoalPage = () => {
                 (Acquire all todos (maybe just title) here)
             </Typography>
 
-        <Typography padding="12px 48px" variant="h6" gutterBottom>
-            (Two personalized question for the user to fill)
+        <Typography padding="12px 48px" variant="h4" gutterBottom>
+            Before enrolling:
         </Typography>
-        <Typography padding="0 72px" variant="h6" gutterBottom>
+            <Typography padding="0 72px" variant="body1">
+                Please answer the following two questions before enrolling.
+            </Typography>
+        <Typography padding="12px 72px" variant="h6" gutterBottom>
             What is your targeted deadline for participating in this goal?
         </Typography>
-        <Typography padding="0 72px" variant="h6" gutterBottom>
+        <Typography padding="12px 72px" variant="h6" gutterBottom>
             How long time do you plan on studying for this goal?
         </Typography>
         <Typography padding="12px 48px" variant="h5" gutterBottom>
-           Enroll(make this into a button)
+           <Button onClick={() => navigate("/profile")} color="inherit">
+              Enroll
+           </Button>
         </Typography>
+
 
 
     </Box>

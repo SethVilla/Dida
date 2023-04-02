@@ -8,6 +8,7 @@ import {GoalAccordian} from "../shared/GoalAccordian";
 import Grid from '@mui/material/Unstable_Grid2';
 import {GoalCard} from "../shared/GoalCard";
 import {NewGoalCard} from "../shared/NewGoalCard";
+import { getALLGoals, getTODOByID, getGoalByID} from '../../services/services';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
