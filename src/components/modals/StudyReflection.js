@@ -38,10 +38,10 @@ const steps = [
                 defaultValue="female"
                 name="radio-buttons-group"
             >
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                <FormControlLabel value="other" control={<Radio />} label="Other" />
-                <FormControlLabel value="test" control={<Radio />} label="test" />
+                <FormControlLabel value="0" control={<Radio />} label="Too comfortable" />
+                <FormControlLabel value="1" control={<Radio />} label="Comfort Zone" />
+                <FormControlLabel value="2" control={<Radio />} label="Learning Zone" />
+                <FormControlLabel value="3" control={<Radio />} label="Panic Zone" />
 
             </RadioGroup>
         </FormControl>,
@@ -58,11 +58,12 @@ const steps = [
                 defaultValue="female"
                 name="radio-buttons-group"
             >
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                <FormControlLabel value="other" control={<Radio />} label="Other" />
-                <FormControlLabel value="test" control={<Radio />} label="test" />
-
+                <FormControlLabel value="0" control={<Radio />} label="10 min" />
+                <FormControlLabel value="1" control={<Radio />} label="20 min" />
+                <FormControlLabel value="2" control={<Radio />} label="30 min" />
+                <FormControlLabel value="3" control={<Radio />} label="40 min" />
+                <FormControlLabel value="4" control={<Radio />} label="50 min" />
+                <FormControlLabel value="5" control={<Radio />} label="60 min" />
             </RadioGroup>
         </FormControl>,
         description:

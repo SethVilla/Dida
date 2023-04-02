@@ -24,7 +24,6 @@ function TabPanel(props) {
             console.log("try get all goal ")
             console.log(res.data)
             setGoals(res.data)
-          //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
           } catch (err) {
             console.log(err);
           } finally {
@@ -92,19 +91,9 @@ export const ProfilePage = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
+              <Grid xs={2} sm={4} md={12} display="flex" justifyContent="center">
                   <NewGoalCard/>
               </Grid>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                  <GoalCard/>
-              </Grid>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
-                  <GoalCard/>
-              </Grid>
-             <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
-                 <GoalCard/>
-             </Grid>
-
           </Grid>
 
 
