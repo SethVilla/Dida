@@ -58,12 +58,9 @@ export const GoalPage = () => {
       <Typography padding="12px 48px" variant="h4">
         Tasks in this goal:
       </Typography>
-      <Typography padding="0 72px">
-        (Acquire all todos (maybe just title) here)
-      </Typography>
       {console.log(todos)}
       {!loading && todos.map( todo=>
-          <Typography>{todo.title}</Typography>
+          <Typography padding="0 72px">{todo.title}</Typography>
         )}
 
       <Typography padding="12px 48px" variant="h4" gutterBottom>

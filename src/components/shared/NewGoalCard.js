@@ -19,7 +19,7 @@ export const NewGoalCard = () => {
       </CardMedia>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          New Challenge Goal
+          Personalized Goal
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Here you can create your personalized challenge goal
