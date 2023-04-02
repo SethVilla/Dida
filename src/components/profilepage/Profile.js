@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAuth} from '../../contexts/AuthContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -8,10 +8,30 @@ import {GoalAccordian} from "../shared/GoalAccordian";
 import Grid from '@mui/material/Unstable_Grid2';
 import {GoalCard} from "../shared/GoalCard";
 import {NewGoalCard} from "../shared/NewGoalCard";
-import { getALLGoals, getTODOByID, getGoalByID} from '../../services/services';
+import {getALLGoals, getGoalByID} from '../../services/services';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+  const {id} = useAuth();
+
+  // const [goals, setGoals] = useState([]);
+  //   const [loading, setLoading] = useState(false);
+  //   useEffect(() => {
+  //       (async () => {
+  //         try {
+  //           setLoading(true);
+  //           const res = await getGoalByID(goalId);
+  //           console.log("try get all goal ")
+  //           console.log(res.data)
+  //           setGoal(res.data)
+  //         //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
+  //         } catch (err) {
+  //           console.log(err);
+  //         } finally {
+  //           setLoading(false);
+  //         }
+  //       })();
+  //     }, []);
 
   return (
       <div

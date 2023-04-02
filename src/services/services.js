@@ -8,6 +8,17 @@ export const getDogs = async () => {
   }
 };
 
+//users
+//get single user by id
+export const getUserByID = async (userID) => {
+  try {
+    return await (await axios.get('http://localhost:8099/user/get/'+userID));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
 //goals
 //get all goals 
 export const getALLGoals = async () => {
