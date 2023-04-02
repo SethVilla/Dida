@@ -13,7 +13,7 @@ export const BasicDateCalendar = () => {
   };
 
   return (
-    <div style={{display: 'flex', justifyContent: "center"}}>
+    <div style={{display: 'flex', justifyContent: 'center'}}>
       <div>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateCalendar
@@ -24,7 +24,10 @@ export const BasicDateCalendar = () => {
       </div>
       <ul>
         {[0, 1, 2].map(el => (
-          <li key={el} onClick={(e) => console.log(e.target.innerHTML)}>{`${el} test hour selection`}</li>
+          <li
+            key={el}
+            onClick={e => console.log(e.target.innerHTML)}
+          >{`${el} test hour selection`}</li>
         ))}
       </ul>
     </div>

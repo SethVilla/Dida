@@ -10,64 +10,73 @@ export const getDogs = async () => {
 
 //users
 //get single user by id
-export const getUserByID = async (userID) => {
+export const getUserByID = async userID => {
   try {
-    return await (await axios.get('http://localhost:8099/user/get/'+userID));
+    return await await axios.get('http://localhost:8099/user/get/' + userID);
   } catch (err) {
     console.log(err);
   }
 };
-//get all goals of this user 
-export const getAllGoalsofUser = async (userID) => {
+//get all goals of this user
+export const getAllGoalsofUser = async userID => {
   try {
-    return await (await axios.get('http://localhost:8099/user/getallinfo/'+userID));
+    return await await axios.get(
+      'http://localhost:8099/user/getallinfo/' + userID,
+    );
   } catch (err) {
     console.log(err);
   }
 };
-
 
 //goals
-//get all goals 
+//get all goals
 export const getALLGoals = async () => {
   try {
-    return await axios.get('http://localhost:8099/goals/getAll',{
-      headers:{
+    return await axios.get('http://localhost:8099/goals/getAll', {
+      headers: {
         Accept: 'application/json',
-       'Content-Type': 'application/json',
-    }});
+        'Content-Type': 'application/json',
+      },
+    });
   } catch (err) {
     console.log(err);
   }
 };
 //get single goal by id
-export const getGoalByID = async (goalID) => {
+export const getGoalByID = async goalID => {
   try {
-    return await (await axios.get('http://localhost:8099/goals/get/'+goalID));
+    return await await axios.get('http://localhost:8099/goals/get/' + goalID);
   } catch (err) {
     console.log(err);
   }
 };
 //get goals created by this user
-export const getGoalsByAuthor = async (userID) => {
+export const getGoalsByAuthor = async userID => {
   try {
-    return await (await axios.get('http://localhost:8099/goals/getByAuthor/'+userID));
+    return await await axios.get(
+      'http://localhost:8099/goals/getByAuthor/' + userID,
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
-export const deleteGoal = async (goalID) => {
+export const deleteGoal = async goalID => {
   try {
-    return await (await axios.delete('http://localhost:8099/goals/delete/'+ goalID));
+    return await await axios.delete(
+      'http://localhost:8099/goals/delete/' + goalID,
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
-export const creatGoal = async (newGoal) => {
+export const creatGoal = async newGoal => {
   try {
-    return await (await axios.post('http://localhost:8099/goals/create', newGoal));
+    return await await axios.post(
+      'http://localhost:8099/goals/create',
+      newGoal,
+    );
   } catch (err) {
     console.log(err);
   }
@@ -75,7 +84,10 @@ export const creatGoal = async (newGoal) => {
 
 export const updateGoal = async (goalID, newGoal) => {
   try {
-    return await axios.put('http://localhost:8099/goals/update'+goalID, newGoal);
+    return await axios.put(
+      'http://localhost:8099/goals/update' + goalID,
+      newGoal,
+    );
   } catch (err) {
     console.log(err);
   }
@@ -92,34 +104,39 @@ export const getALLTodos = async () => {
 };
 
 //get one single TODO by id
-export const getTODOByID = async (todoID) => {
+export const getTODOByID = async todoID => {
   try {
-    return await (await axios.get('http://localhost:8099/todolist/get/'+todoID));
+    return await await axios.get(
+      'http://localhost:8099/todolist/get/' + todoID,
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
 //get a list of todo by goalID
-export const getTODOByGoal = async (goalID) => {
+export const getTODOByGoal = async goalID => {
   try {
-    return await axios.get('http://localhost:8099/todolist/getbygoalid/'+goalID);
+    return await axios.get(
+      'http://localhost:8099/todolist/getbygoalid/' + goalID,
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
-
-export const deleteTODO = async (todoID) => {
+export const deleteTODO = async todoID => {
   try {
-    return await axios.delete('http://localhost:8099/todolist/delete/'+ todoID);
+    return await axios.delete(
+      'http://localhost:8099/todolist/delete/' + todoID,
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
 //return the created new todo document
-export const creatTODO = async (newTodo) => {
+export const creatTODO = async newTodo => {
   try {
     return await axios.post('http://localhost:8099/todolist/create', newTodo);
   } catch (err) {
@@ -130,7 +147,10 @@ export const creatTODO = async (newTodo) => {
 //return the updated new todo document
 export const updateTODO = async (todoID, newTODO) => {
   try {
-    return await axios.put('http://localhost:8099/todolist/update'+todoID, newTODO);
+    return await axios.put(
+      'http://localhost:8099/todolist/update' + todoID,
+      newTODO,
+    );
   } catch (err) {
     console.log(err);
   }
@@ -147,18 +167,18 @@ export const getALLTasks = async () => {
 };
 
 //get one single TODO by id
-export const getTaskByID = async (taskID) => {
+export const getTaskByID = async taskID => {
   try {
-    return await (await axios.get('http://localhost:8099/tasks/get/'+taskID));
+    return await await axios.get('http://localhost:8099/tasks/get/' + taskID);
   } catch (err) {
     console.log(err);
   }
 };
 
 //get a list of todo by goalID
-export const getTaskByGoal = async (goalID) => {
+export const getTaskByGoal = async goalID => {
   try {
-    return await axios.get('http://localhost:8099/tasks/getByGoal/'+goalID);
+    return await axios.get('http://localhost:8099/tasks/getByGoal/' + goalID);
   } catch (err) {
     console.log(err);
   }
@@ -166,24 +186,24 @@ export const getTaskByGoal = async (goalID) => {
 
 export const getTaskByGoalandUser = async (goalID, userID) => {
   try {
-    return await axios.get(`http://localhost:8099/tasks/getByUserandGoal?userId=${userID}&goalId=${goalID}`);
+    return await axios.get(
+      `http://localhost:8099/tasks/getByUserandGoal?userId=${userID}&goalId=${goalID}`,
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
-
-
-export const deleteTask = async (taskID) => {
+export const deleteTask = async taskID => {
   try {
-    return await axios.delete('http://localhost:8099/tasks/delete/'+ taskID);
+    return await axios.delete('http://localhost:8099/tasks/delete/' + taskID);
   } catch (err) {
     console.log(err);
   }
 };
 
 //return the created new todo document
-export const creatTask = async (newTask) => {
+export const creatTask = async newTask => {
   try {
     return await axios.post('http://localhost:8099/tasks/create', newTask);
   } catch (err) {
@@ -200,7 +220,6 @@ export const updateTask = async (newTask) => {
   }
 };
 
-
 export const getRickAndMortyCharacters = async () => {
   try {
     return await axios.get('https://rickandmortyapi.com/api/character');
@@ -208,8 +227,6 @@ export const getRickAndMortyCharacters = async () => {
     console.log(err);
   }
 };
-
-
 
 export const getUserDetails = () => {
   return {
@@ -220,5 +237,3 @@ export const getUserDetails = () => {
     token: 'token',
   };
 };
-
-
