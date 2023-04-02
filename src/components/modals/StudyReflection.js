@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -15,6 +15,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import {studyReflectionReducer} from "../../reducers/studyReflectionReducer";
 
 const style = {
   position: 'absolute',
@@ -28,65 +29,88 @@ const style = {
   p: 4,
 };
 
-const steps = [
-  {
-    label: 'Select Comfort Zone',
-    component: (
-      <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="female"
-          name="radio-buttons-group"
-        >
-          <FormControlLabel
-            value="0"
-            control={<Radio />}
-            label="Too comfortable"
-          />
-          <FormControlLabel
-            value="1"
-            control={<Radio />}
-            label="Comfort Zone"
-          />
-          <FormControlLabel
-            value="2"
-            control={<Radio />}
-            label="Learning Zone"
-          />
-          <FormControlLabel value="3" control={<Radio />} label="Panic Zone" />
-        </RadioGroup>
-      </FormControl>
-    ),
-    description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
-  },
-  {
-    label: 'Completion Time',
-    component: (
-      <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="female"
-          name="radio-buttons-group"
-        >
-          <FormControlLabel value="0" control={<Radio />} label="10 min" />
-          <FormControlLabel value="1" control={<Radio />} label="20 min" />
-          <FormControlLabel value="2" control={<Radio />} label="30 min" />
-          <FormControlLabel value="3" control={<Radio />} label="40 min" />
-          <FormControlLabel value="4" control={<Radio />} label="50 min" />
-          <FormControlLabel value="5" control={<Radio />} label="60 min" />
-        </RadioGroup>
-      </FormControl>
-    ),
-    description:
-      'An ad group contains one or more ads which target a shared set of keywords.',
-  },
-];
 export const StudyReflection = () => {
   const [open, setOpen] = React.useState(false);
+  const [payload, setPayload] = useReducer(studyReflectionReducer);
+  const steps = [
+    {
+      label: 'Select Comfort Zone',
+      component: (
+          <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+            >
+              <FormControlLabel
+                  value="0"
+                  control={<Radio />}
+                  label="Too comfortable"
+                  onChange={(event)=>{
+                    setPayload({type: "change_learning_zone", value : {
+                        learningZone: 0
+                        }})
+                  }}
+              />
+              <FormControlLabel
+                  value="1"
+                  control={<Radio />}
+                  label="Comfort Zone"
+                  onChange={(event)=>{
+                      setPayload({type: "change_learning_zone", value : {
+                              learningZone: 1
+                          }})
+                  }}
+              />
+              <FormControlLabel
+                  value="2"
+                  control={<Radio />}
+                  label="Learning Zone"
+                  onChange={(event)=>{
+                      setPayload({type: "change_learning_zone", value : {
+                              learningZone: 2
+                          }})
+                  }}
+              />
+              <FormControlLabel value="3" control={<Radio />} label="Panic Zone"
+                                onChange={(event)=>{
+                                    setPayload({type: "change_learning_zone", value : {
+                                            learningZone: 3
+                                        }})                                }
+              }
+              />
+            </RadioGroup>
+          </FormControl>
+      ),
+      description: `For each ad campaign that you create, you can control how much
+              you're willing to spend on clicks and conversions, which networks
+              and geographical locations you want your ads to show on, and more.`,
+    },
+    {
+      label: 'Completion Time',
+      component: (
+          <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+            >
+              <FormControlLabel value="0" control={<Radio />} label="10 min" />
+              <FormControlLabel value="1" control={<Radio />} label="20 min" />
+              <FormControlLabel value="2" control={<Radio />} label="30 min" />
+              <FormControlLabel value="3" control={<Radio />} label="40 min" />
+              <FormControlLabel value="4" control={<Radio />} label="50 min" />
+              <FormControlLabel value="5" control={<Radio />} label="60 min" />
+            </RadioGroup>
+          </FormControl>
+      ),
+      description:
+          'An ad group contains one or more ads which target a shared set of keywords.',
+    },
+  ];
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -103,6 +127,10 @@ export const StudyReflection = () => {
   const handleReset = () => {
     setActiveStep(0);
   };
+
+  const onSubmit = () => {
+
+  }
 
   return (
     <div>
