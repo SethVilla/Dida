@@ -10,9 +10,9 @@ import {ProtectedRoute} from './components/shared/ProtectedRoute';
 import {ButtonAppBar} from './components/shared/AppBar';
 import {ProfilePage} from './components/profilepage/Profile';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import Box from "@mui/material/Box";
-import HeaderImage from "./assets/adrian-infernus-GLf7bAwCdYg-unsplash.jpg";
-import {GoalPage} from "./components/goalpage/GoalPage";
+import Box from '@mui/material/Box';
+import HeaderImage from './assets/adrian-infernus-GLf7bAwCdYg-unsplash.jpg';
+import {GoalPage} from './components/goalpage/GoalPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,22 +35,22 @@ const router = createBrowserRouter([
     ),
   },
   {
-      path: '/how-it-works',
-      element: (
-        <>
-          <ButtonAppBar />
-          <HIWPage />
-        </>
-      ),
-   },
-   {
-     path: '/profile',
-     element: (
-       <>
-         <ButtonAppBar />
-           <ProfilePage />
-       </>
-     ),
+    path: '/how-it-works',
+    element: (
+      <>
+        <ButtonAppBar />
+        <HIWPage />
+      </>
+    ),
+  },
+  {
+    path: '/profile',
+    element: (
+      <>
+        <ButtonAppBar />
+        <ProfilePage />
+      </>
+    ),
   },
   {
     path: '/signup',
@@ -86,10 +86,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-          <Box sx={{backgroundImage: `url(${HeaderImage})`, backgroundPosition: "center",
-              backgroundSize: "cover"}}>
-        <RouterProvider router={router} />
-          </Box>
+        <Box
+          sx={{
+            backgroundImage: `url(${HeaderImage})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+          }}
+        >
+          <RouterProvider router={router} />
+        </Box>
       </QueryClientProvider>
     </ThemeProvider>
   );
