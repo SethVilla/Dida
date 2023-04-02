@@ -8,8 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from "react-router-dom";
 import LogoImage from "../../assets/logo_small.png";
+import {useAuth} from '../../contexts/AuthContext';
 
 export const ButtonAppBar = () => {
+  const {username} = useAuth();
   const navigate = useNavigate();
   return (
     <Box sx={{flexGrow: 1}}>
@@ -34,15 +36,18 @@ export const ButtonAppBar = () => {
           <Button onClick={() => navigate("/how-it-works")} color="inherit">
             How it works
           </Button>
-          <Button onClick={() => navigate("/profile")} color="inherit">
+          {username && <Button onClick={() => navigate("/profile")} color="inherit">
             My Profile
-          </Button>
-          <Button onClick={() => navigate("/login")} color="inherit">
+          </Button>}
+          {username && <Button onClick={() => navigate("/")} color="inherit">
+            Logout
+          </Button>}
+          {!username && <Button onClick={() => navigate("/login") /* && username = Null*/ } color="inherit">
             Login
-          </Button>
-          <Button onClick={() => navigate("/signup")} color="inherit">
+          </Button>}
+          {!username && <Button onClick={() => navigate("/signup")} color="inherit">
             Signup
-          </Button>
+          </Button>}
         </Toolbar>
       </AppBar>
     </Box>

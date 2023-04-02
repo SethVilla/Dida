@@ -21,13 +21,13 @@ console.log(goalDetails)
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        30 Day Challenge
+                        {goalDetails.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Most common Interview Leetcodes
+                        {goalDetails.description}
                     </Typography>
                     <Typography variant="subtitle2" color="text.secondary">
-                        created by Dida Admin
+                        created by {goalDetails.author}
                     </Typography>
                 </CardContent>
                 <CardActions>

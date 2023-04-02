@@ -49,10 +49,10 @@ const router = createBrowserRouter([
    {
      path: '/profile',
      element: (
-       <>
+       <ProtectedRoute>
          <ButtonAppBar />
            <ProfilePage />
-       </>
+       </ProtectedRoute>
      ),
   },
   {
@@ -76,19 +76,10 @@ const router = createBrowserRouter([
   {
     path: '/goal/:goalId',
     element: (
-      <>
+      <ProtectedRoute>
         <ButtonAppBar />
         <GoalPage />
-      </>
-    ),
-  },
-  {
-    path: '/feed',
-    element: (
-      <>
-        <ButtonAppBar />
-        <Feed />
-      </>
+      </ProtectedRoute>
     ),
   },
 ]);
