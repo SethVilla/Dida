@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,11 +7,29 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useTheme} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+import {getUserByID, getGoalByID} from '../../services/services';
 
 export const GoalCard = ({goalDetails}) => {
   console.log(goalDetails);
   const theme = useTheme();
   const navigate = useNavigate();
+  const [author, setAuthor] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const res = await getUserByID(goalDetails.author);
+        console.log('try get user ');
+        console.log(res.data);
+        setAuthor(res.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
   return (
     <Card>
       <CardMedia
@@ -28,7 +46,7 @@ export const GoalCard = ({goalDetails}) => {
           {goalDetails.description}
         </Typography>
         <Typography variant="subtitle2" color="text.secondary">
-          created by {goalDetails.author}
+          created by {author.username}
         </Typography>
       </CardContent>
       <CardActions>
