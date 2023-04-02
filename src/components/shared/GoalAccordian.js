@@ -48,7 +48,7 @@ const Demo = styled('div')(({ theme }) => ({
             (async () => {
             try {
                 setLoading(true);
-                const res = await getTaskByGoalandUser(goal.id,"6428b8c36e3ad128fabbd01f");
+                const res = await getTaskByGoalandUser(goal.id,"642906c5816ed9263a189acc");
                 console.log("try get tasks ")
                 console.log(res.data.tasklist)
                 settasks(res.data.tasklist)
@@ -88,25 +88,25 @@ const Demo = styled('div')(({ theme }) => ({
                             <Grid item xs={12} md={12}>
                                 <Demo>
                                     <List dense={dense}>
-                                        {tasks.map(task =>
+                                        {tasks.map(taskitem =>
 
-                                                                                     <>
-                                                                                     <ListItem backgroundColor="Green">
-                                                                                         <ListItemText
-                                                                                             primary={task.todo.title}
-                                                                                             secondary={secondary ? 'Secondary text' : null}
-                                                                                         />
-                                                                                         <ListItemIcon>
-                                                                                             <FolderIcon />
-                                                                                         </ListItemIcon>
-                                                                                         <ListItemIcon>
-                                                                                             <ListItemButton>
-                                                                                                 <StudyReflection/>
-                                                                                             </ListItemButton>
-                                                                                         </ListItemIcon>
-                                                                                     </ListItem>
-                                                                                         <Divider light />
-                                                                                         </>
+                                        <>
+                                        <ListItem backgroundColor="Green">
+                                            <ListItemText
+                                                primary={taskitem.todo.title}
+                                                secondary={taskitem.todo.description}
+                                            />
+                                            <ListItemIcon>
+                                                <FolderIcon />
+                                            </ListItemIcon>
+                                            <ListItemIcon>
+                                                <ListItemButton>
+                                                    <StudyReflection task = {taskitem.task}/>
+                                                </ListItemButton>
+                                            </ListItemIcon>
+                                        </ListItem>
+                                            <Divider light />
+                                            </>
                                          )}
                                     </List>
                                 </Demo>

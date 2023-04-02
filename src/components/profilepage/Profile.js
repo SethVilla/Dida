@@ -65,7 +65,7 @@ export const ProfilePage = () => {
         (async () => {
           try {
             setLoading(true);
-            const res = await getAllGoalsofUser("6428b8c36e3ad128fabbd01f");
+            const res = await getAllGoalsofUser("642906c5816ed9263a189acc");
             console.log("try get loged user ")
             console.log(res.data)
             console.log(res.data.goallist)

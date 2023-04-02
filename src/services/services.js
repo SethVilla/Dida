@@ -192,9 +192,9 @@ export const creatTask = async (newTask) => {
 };
 
 //return the updated new todo document
-export const updateTask = async (taskID, newTask) => {
+export const updateTask = async (newTask) => {
   try {
-    return await axios.put('http://localhost:8099/tasks/update'+taskID, newTask);
+    return await axios.put('http://localhost:8099/tasks/update', newTask);
   } catch (err) {
     console.log(err);
   }
