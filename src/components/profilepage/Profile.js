@@ -85,27 +85,20 @@ export const ProfilePage = () => {
           <Tab label="My Created Goals" {...a11yProps(1)} />
           <Tab label="Settings" {...a11yProps(2)} />
         </Tabs>
-        <TabPanel         styles={{
-          width: "100%",
-        }} value={value} index={0}>
+        <TabPanel value={value} index={0}>
+          <Box sx={{
+            width: "1200px",
+          }}>
          <GoalAccordian/>
+          </Box>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
               <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                  <NewGoalCard/>
-              </Grid>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                  <GoalCard/>
-              </Grid>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
-                  <GoalCard/>
-              </Grid>
-             <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center" >
-                 <GoalCard/>
-             </Grid>
+                <NewGoalCard/>
+              </Grid>x
 
-          </Grid>
+            </Grid>
 
 
         </TabPanel>

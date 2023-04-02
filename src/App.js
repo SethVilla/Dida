@@ -46,10 +46,10 @@ const router = createBrowserRouter([
    {
      path: '/profile',
      element: (
-       <ProtectedRoute>
+       <>
          <ButtonAppBar />
            <ProfilePage />
-       </ProtectedRoute>
+       </>
      ),
   },
   {
