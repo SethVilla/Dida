@@ -26,7 +26,7 @@ export const LoginForm = () => {
 
   useEffect(() => {
       if (username) {
-          navigate("/profile")
+          navigate("/")
       }
   }, [username])
 
