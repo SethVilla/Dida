@@ -37,10 +37,14 @@ const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
 
- export const GoalAccordian = () => {
+ export const GoalAccordian = ({goal,user}) => {
+    console.log("this is in accordian")
+    console.log(goal)
+    console.log(user)
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(true);
     const [expanded, setExpanded] = React.useState(false);
+
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -55,7 +59,7 @@ const Demo = styled('div')(({ theme }) => ({
                     id="panel1bh-header"
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        General settings
+                            
                     </Typography>
                     <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
                 </AccordionSummary>

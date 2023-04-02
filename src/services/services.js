@@ -17,6 +17,14 @@ export const getUserByID = async (userID) => {
     console.log(err);
   }
 };
+//get all goals of this user 
+export const getAllGoalsofUser = async (userID) => {
+  try {
+    return await (await axios.get('http://localhost:8099/user/getallinfo/'+userID));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 
 //goals
@@ -155,6 +163,15 @@ export const getTaskByGoal = async (goalID) => {
     console.log(err);
   }
 };
+
+export const getTaskByGoalandUser = async (goalID, userID) => {
+  try {
+    return await axios.get(`http://localhost:8099/tasks/getByUserandGoal?userId=${userID}&goalId=${goalID}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 
 
 export const deleteTask = async (taskID) => {
