@@ -8,30 +8,29 @@ import {GoalAccordian} from "../shared/GoalAccordian";
 import Grid from '@mui/material/Unstable_Grid2';
 import {GoalCard} from "../shared/GoalCard";
 import {NewGoalCard} from "../shared/NewGoalCard";
-import {getALLGoals, getGoalByID} from '../../services/services';
+import {getUserByID, getAllGoalsofUser, getTaskByGoalandUser} from '../../services/services';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   const {id} = useAuth();
 
-  // const [goals, setGoals] = useState([]);
-  //   const [loading, setLoading] = useState(false);
-  //   useEffect(() => {
-  //       (async () => {
-  //         try {
-  //           setLoading(true);
-  //           const res = await getGoalByID(goalId);
-  //           console.log("try get all goal ")
-  //           console.log(res.data)
-  //           setGoal(res.data)
-  //         //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
-  //         } catch (err) {
-  //           console.log(err);
-  //         } finally {
-  //           setLoading(false);
-  //         }
-  //       })();
-  //     }, []);
+  const [goals, setGoals] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+        (async () => {
+          try {
+            setLoading(true);
+            const res = await getUserByID(id);
+            console.log("try get all goal ")
+            console.log(res.data)
+            setGoals(res.data)
+          } catch (err) {
+            console.log(err);
+          } finally {
+            setLoading(false);
+          }
+        })();
+      }, []);
 
   return (
       <div
@@ -58,13 +57,35 @@ function a11yProps(index) {
 }
 
 export const ProfilePage = () => {
-  const {uid} = useAuth();
+  const {id} = useAuth();
+  console.log(id)
+  const [goals, setGoals] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+        (async () => {
+          try {
+            setLoading(true);
+            const res = await getAllGoalsofUser("6428b8c36e3ad128fabbd01f");
+            console.log("try get loged user ")
+            console.log(res.data)
+            console.log(res.data.goallist)
+            var goalList = res.data.goallist
+           setGoals(goalList)
+          //   setDogs(data?.message?.map((url, i) => buildDogFeedPost(url, i)));
+          } catch (err) {
+            console.log(err);
+          } finally {
+            setLoading(false);
+          }
+        })();
+      }, []);
+      console.log(goals)
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  console.log(uid);
+
   // Access the context provider
   // Display user details
   // build out ui for the profile page
@@ -89,16 +110,17 @@ export const ProfilePage = () => {
           <Box sx={{
             width: "1200px",
           }}>
-         <GoalAccordian/>
+              {goals.map((goal) => (
+                  <GoalAccordian key={goal.id} goal={goal} user={"6428b8c36e3ad128fabbd01f"} />
+              ))}
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1}>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-              <Grid xs={2} sm={4} md={3} display="flex" justifyContent="center">
-                <NewGoalCard/>
-              </Grid>x
-
-            </Grid>
+          <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+              <Grid xs={2} sm={4} md={12} display="flex" justifyContent="center">
+                  <NewGoalCard/>
+              </Grid>
+          </Grid>
 
 
         </TabPanel>

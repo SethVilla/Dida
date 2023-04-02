@@ -39,7 +39,7 @@ export const GoalPage = () => {
             Goal: {goal?.title}:
         </Typography>
         <Typography padding="0 72px" variant="body1">
-            Author: ({author.username})
+            Author: {author.username}
         </Typography>
         <Typography padding="0 72px" variant="body1">
             Created on: {goal?.createdDate}
